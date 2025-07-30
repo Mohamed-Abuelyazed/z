@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>product-1</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .color-circle {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 5px;
+      cursor: pointer;
+      border: 2px solid #ccc;
+    }
+
+    .color-circle.selected {
+      border: 3px solid #000;
+    }
+
+    .product-img:hover {
+      transform: scale(1.05);
+      transition: 0.3s;
+    }
+  </style>
+</head>
+<body class="bg-light">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+
+    <!-- الشعار -->
+     <img src="https://img.freepik.com/premium-vector/z-letter-wave-logo-vector_667864-10139.jpg"
+     style="width: 55px; height: 55px;" class="card-img-top product-img " alt="صورة المنتج">
+     <span>""</span>
+      <a class="navbar-brand" href="store.html">My Store</a>
+
+    <!-- زرار الموبايل -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- القائمة والآيكون -->
+    <div class="collapse navbar-collapse justify-content-center" id="mainNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="#">|</a></li>
+        <li class="nav-item"><a class="nav-link" href="store.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">|</a></li>
+        <li class="nav-item"><a class="nav-link" href="store.html">Categories</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">|</a></li>
+        <li class="nav-item"><a class="nav-link" href="store.html">Contact Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">|</a></li>
+        <li class="nav-item"><a class="nav-link" href="store.html">About Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">|</a></li>
+      </ul>
+    </div>
+
+    <!-- السلة على اليمين -->
+    <div class="d-flex align-items-center">
+      <div class="position-relative me-2">
+        <i class="fas fa-shopping-cart fa-lg text-white"></i>
+        <span id="cartCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+          0
+        </span>
+      </div>
+            <span> """"</span>
+      <button id="clearCart" class="btn btn-danger">Clear cart</button>
+    </div>
+
+    </div>
+
+  </div>
+</nav>
+<br>
+<div class="container py-5">
+  <div class="card mx-auto" style="max-width: 500px; overflow: hidden;">
+    <img src="img/prod-4.jpg" class="card-img-top product-img " alt="صورة المنتج">
+    <div class="card-body">
+      <h5 class="card-title">اسم المنتج</h5>
+      <p class="card-text">ده وصف سريع للمنتج يوضح أهم المميزات ويخلي العميل يتحمس يشتريه.</p>
+
+      <!-- اختيار اللون -->
+      <div class="mb-3">
+        <label class="form-label">اختر اللون:</label><br>
+        <span class="color-circle" style="background-color: red;" onclick="selectColor(this)"></span>
+        <span class="color-circle" style="background-color: blue;" onclick="selectColor(this)"></span>
+        <span class="color-circle" style="background-color: green;" onclick="selectColor(this)"></span>
+      </div>
+
+      <!-- اختيار المقاس -->
+      <div class="mb-3">
+        <label for="sizeSelect" class="form-label">اختر المقاس:</label>
+        <select class="form-select" id="sizeSelect">
+          <option value="">-- اختر المقاس --</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select>
+      </div>
+
+      <!-- زر الإضافة -->
+      <button class="btn btn-primary w-100">🛒 أضف إلى العربة</button>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer>
+  <div class="footer-content  py-4 text-white bg-dark">
+    <p style="text-align: center;"> &copy; 2025 My Store. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  function selectColor(element) {
+    document.querySelectorAll('.color-circle').forEach(el => el.classList.remove('selected'));
+    element.classList.add('selected');
+  }
+
+  // لما الصفحة تفتح، خلي العداد يظهر الرقم المحفوظ
+  const storedCount = localStorage.getItem("cartCount");
+  if (storedCount) {
+    const cartCountSpan = document.getElementById("cartCount");
+    if (cartCountSpan) {
+      cartCountSpan.textContent = storedCount;
+    }
+  }
+  document.getElementById("clearCart").addEventListener("click", function () {
+  totalCartCount = 0;
+  localStorage.setItem("cartCount", totalCartCount);
+  document.getElementById("cartCount").textContent = totalCartCount;
+});
+
+</script>
+
+</body>
+</html>
